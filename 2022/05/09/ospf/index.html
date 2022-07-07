@@ -8,16 +8,17 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>ospf | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="【动态路由协议】①距离矢量协议：发送路由更新的时候发送的是路由表②链路状态协议：发送路由更新的时候发送的是拓扑表 【链路状态协议】链路：链路所连接的接口信息以及加入ospf的接口状态：通过接口进行邻居关系的建立 ①LSA–链路状态通告：各设备的详细信息②LSDB–链路状态数据库（拓扑表）：由LSA组成 【OSPF】1、特点：①开放最短路径优先，属于公有协议②直接工作在IP层之上，协议号是89②采用">
+  <meta name="description" content="【动态路由协议】①距离矢量协议：发送路由更新的时候发送的是路由表②链路状态协议：发送路由更新的时候发送的是拓扑表 【链路状态协议】链路：链路所连接的接口信息以及加入ospf的接口状态：通过接口进行邻居关系的建立 ①LSA–链路状态通告：各设备的详细信息②LSDB–链路状态数据库（拓扑表）：由LSA组成">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ospf">
 <meta property="og:url" content="http://example.com/2022/05/09/ospf/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="【动态路由协议】①距离矢量协议：发送路由更新的时候发送的是路由表②链路状态协议：发送路由更新的时候发送的是拓扑表 【链路状态协议】链路：链路所连接的接口信息以及加入ospf的接口状态：通过接口进行邻居关系的建立 ①LSA–链路状态通告：各设备的详细信息②LSDB–链路状态数据库（拓扑表）：由LSA组成 【OSPF】1、特点：①开放最短路径优先，属于公有协议②直接工作在IP层之上，协议号是89②采用">
+<meta property="og:description" content="【动态路由协议】①距离矢量协议：发送路由更新的时候发送的是路由表②链路状态协议：发送路由更新的时候发送的是拓扑表 【链路状态协议】链路：链路所连接的接口信息以及加入ospf的接口状态：通过接口进行邻居关系的建立 ①LSA–链路状态通告：各设备的详细信息②LSDB–链路状态数据库（拓扑表）：由LSA组成">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-05-09T11:29:31.000Z">
-<meta property="article:modified_time" content="2022-06-06T07:45:32.921Z">
+<meta property="article:modified_time" content="2022-07-07T06:23:46.658Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="数据通信">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -177,6 +178,7 @@
         <h2 id="【动态路由协议】"><a href="#【动态路由协议】" class="headerlink" title="【动态路由协议】"></a>【动态路由协议】</h2><p>①距离矢量协议：发送路由更新的时候发送的是路由表<br>②链路状态协议：发送路由更新的时候发送的是拓扑表</p>
 <h2 id="【链路状态协议】"><a href="#【链路状态协议】" class="headerlink" title="【链路状态协议】"></a>【链路状态协议】</h2><p>链路：链路所连接的接口信息以及加入ospf的接口<br>状态：通过接口进行邻居关系的建立</p>
 <p>①LSA–链路状态通告：各设备的详细信息<br>②LSDB–链路状态数据库（拓扑表）：由LSA组成</p>
+<p><em><span id="more"></span></em></p>
 <h2 id="【OSPF】"><a href="#【OSPF】" class="headerlink" title="【OSPF】"></a>【OSPF】</h2><h3 id="1、特点："><a href="#1、特点：" class="headerlink" title="1、特点："></a>1、特点：</h3><p>①开放最短路径优先，属于公有协议<br>②直接工作在IP层之上，协议号是89<br>②采用SPF算法进行路径计算（根据拓扑表运行SPF算法，得到最优且无环路径存放进路由表）<br>③支持多区域的设计，因此可以支持大型的网络规模<br>④采用组播的方式发送路由更新，组播地址<br>224.0.0.5：所有启用ospf路由协议的路由器都会加入<br>224.0.0.6：只有DR&#x2F;BDR会加入</p>
 <h3 id="2、基础术语："><a href="#2、基础术语：" class="headerlink" title="2、基础术语："></a>2、基础术语：</h3><h4 id="1）RID–router-ID：路由器标识，用来唯一标识一台启用ospf路由协议的路由器"><a href="#1）RID–router-ID：路由器标识，用来唯一标识一台启用ospf路由协议的路由器" class="headerlink" title="1）RID–router-ID：路由器标识，用来唯一标识一台启用ospf路由协议的路由器"></a>1）RID–router-ID：路由器标识，用来唯一标识一台启用ospf路由协议的路由器</h4><p>选举规则：<br>①手动指定：手动指定的RID具有最高的优先级，并且不会随着网络拓扑的变化而发生变化<br>②回环口地址：地址越大越优<br>③双up的物理接口地址：越大越优</p>
 <p>R1(config)#router ospf 1<br>R1(config-router)#router-id 1.1.1.1	–手动指定RID</p>
@@ -223,6 +225,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据通信</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       

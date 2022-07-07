@@ -152,6 +152,210 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-vlan原理和配置" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/07/07/vlan%E5%8E%9F%E7%90%86%E5%92%8C%E9%85%8D%E7%BD%AE/">vlan原理和配置</a>
+    </h1>
+  
+
+        
+        <a href="/2022/07/07/vlan%E5%8E%9F%E7%90%86%E5%92%8C%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+  	<time datetime="2022-07-07T06:24:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="VLAN原理和配置"><a href="#VLAN原理和配置" class="headerlink" title="VLAN原理和配置"></a>VLAN原理和配置</h1><h2 id="一、实施VLAN和TRUNK"><a href="#一、实施VLAN和TRUNK" class="headerlink" title="一、实施VLAN和TRUNK"></a>一、实施VLAN和TRUNK</h2><h3 id="1、vlan：虚拟局域网"><a href="#1、vlan：虚拟局域网" class="headerlink" title="1、vlan：虚拟局域网"></a>1、vlan：虚拟局域网</h3><h4 id="1）功能"><a href="#1）功能" class="headerlink" title="1）功能"></a>1）功能</h4><p>​		vlan是独立的lan网络</p>
+<p>​		分割广播域</p>
+<h4 id="2）范围"><a href="#2）范围" class="headerlink" title="2）范围"></a>2）范围</h4><p>​		0-4095</p>
+<p>​		0和4095是不能使用的，vlan1是默认存在，在思科交换机上1002-1005是默认存在的，有特殊用途</p>
+<h4 id="3）划分方式"><a href="#3）划分方式" class="headerlink" title="3）划分方式"></a>3）划分方式</h4><p>​		<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/VLAN划分方式.png" alt="划分方式" style="zoom:80%;" /></p>
+<table>
+<thead>
+<tr>
+<th align="center">VLAN的划分方式</th>
+<th align="center">VLAN 10</th>
+<th align="center">VLAN 20</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">基于接口</td>
+<td align="center">GE0&#x2F;0&#x2F;1，GE0&#x2F;0&#x2F;3</td>
+<td align="center">GE0&#x2F;0&#x2F;2，GE0&#x2F;0&#x2F;4</td>
+</tr>
+<tr>
+<td align="center">基于MAC地址</td>
+<td align="center">MAC 1，MAC 3</td>
+<td align="center">MAC 2，MAC 4</td>
+</tr>
+<tr>
+<td align="center">基于IP子网划分</td>
+<td align="center">10.0.1.*</td>
+<td align="center">10.0.2.*</td>
+</tr>
+<tr>
+<td align="center">基于协议划分</td>
+<td align="center">IP</td>
+<td align="center">IPv6</td>
+</tr>
+<tr>
+<td align="center">基于策略</td>
+<td align="center">10.0.1.* + GE0&#x2F;0&#x2F;1 + MAC 1</td>
+<td align="center">10.0.2.* + GE0&#x2F;0&#x2F;2 + MAC 2</td>
+</tr>
+</tbody></table>
+<h4 id="4）匹配顺序"><a href="#4）匹配顺序" class="headerlink" title="4）匹配顺序"></a>4）匹配顺序</h4><p>​		基于mac地址-&gt;基于IP子网-&gt;基于协议-&gt;基于接口</p>
+<h4 id="5）本征vlan（PVID）"><a href="#5）本征vlan（PVID）" class="headerlink" title="5）本征vlan（PVID）"></a>5）本征vlan（PVID）</h4><p>​		默认为1，可以不携带标签进行发送</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config-if)#switchport trunk native vlan 10</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、TRUNK"><a href="#2、TRUNK" class="headerlink" title="2、TRUNK"></a>2、TRUNK</h3><h4 id="1）概述"><a href="#1）概述" class="headerlink" title="1）概述"></a>1）概述</h4><p>​		一个TRUNK可传输来自多个VLAN的流量</p>
+<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/TURNK.png" alt="TRUNK" style="zoom:80%;" />
+
+<h4 id="2）Access链路和Trunk链路"><a href="#2）Access链路和Trunk链路" class="headerlink" title="2）Access链路和Trunk链路"></a>2）Access链路和Trunk链路</h4><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/access和trunk'.png" alt="Access和Trunk" style="zoom:80%;" />
+
+<h4 id="3）Hybrid链路和Trunk链路的区别"><a href="#3）Hybrid链路和Trunk链路的区别" class="headerlink" title="3）Hybrid链路和Trunk链路的区别"></a>3）Hybrid链路和Trunk链路的区别</h4><p>​		①Hybrid端口允许多个VLAN的以太网帧不带标签</p>
+<p>​		②Trunk端口只允许缺省VLAN的以太网不带标签</p>
+<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/Trunk 和Hybrid.png" alt="Hybrid" style="zoom:80%;" />
+
+<h2 id="二、DTP：动态TRUNK协商，思科私有协议"><a href="#二、DTP：动态TRUNK协商，思科私有协议" class="headerlink" title="二、DTP：动态TRUNK协商，思科私有协议"></a>二、DTP：动态TRUNK协商，思科私有协议</h2><h3 id="1、作用："><a href="#1、作用：" class="headerlink" title="1、作用："></a>1、作用：</h3><p>用于交换机之间是否处于trunk模式下进行工作</p>
+<h3 id="2、模式："><a href="#2、模式：" class="headerlink" title="2、模式："></a>2、模式：</h3><h4 id="1）动态期望："><a href="#1）动态期望：" class="headerlink" title="1）动态期望："></a>1）动态期望：</h4><p>​		主动模式，主动询问对方是否要在trunk模式下进行工作</p>
+<h4 id="2）动态自动："><a href="#2）动态自动：" class="headerlink" title="2）动态自动："></a>2）动态自动：</h4><p>​		被动模式，被动等待对方询问我在trunk模式下进行工作</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>动态自动</th>
+<th>动态期望</th>
+<th>TRUNK</th>
+<th>接入</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>动态自动</td>
+<td>接入</td>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>接入</td>
+</tr>
+<tr>
+<td>动态期望</td>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>接入</td>
+</tr>
+<tr>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>有限的连接</td>
+</tr>
+<tr>
+<td>接入</td>
+<td>接入</td>
+<td>接入</td>
+<td>有限的连接</td>
+<td>接入</td>
+</tr>
+</tbody></table>
+<h3 id="3、基本配置："><a href="#3、基本配置：" class="headerlink" title="3、基本配置："></a>3、基本配置：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#int e0/0</span><br><span class="line">Switch(config-if)#switchport mode dynamic desirable---配置为主动模式</span><br><span class="line">Switch(config-if)#switchport mode dynamic auto---配置为被动模式</span><br><span class="line"></span><br><span class="line">Switch#show int trunk</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、WLAN："><a href="#3、WLAN：" class="headerlink" title="3、WLAN："></a>3、WLAN：</h2><h3 id="1、分类："><a href="#1、分类：" class="headerlink" title="1、分类："></a>1、分类：</h3><p>​	①独立WLAN<br>​	②基于控制器的WLAN</p>
+<h3 id="2、组网架构："><a href="#2、组网架构：" class="headerlink" title="2、组网架构："></a>2、组网架构：</h3><h4 id="1）胖AP："><a href="#1）胖AP：" class="headerlink" title="1）胖AP："></a>1）胖AP：</h4><p>​		一般用于家庭等环境</p>
+<h4 id="2）AC-瘦AP："><a href="#2）AC-瘦AP：" class="headerlink" title="2）AC+瘦AP："></a>2）AC+瘦AP：</h4><p>​		一般用于企业网</p>
+<p>​		AP和AC之间通过CAPWAP隧道进行通信</p>
+<h2 id="四、VLAN部署方式"><a href="#四、VLAN部署方式" class="headerlink" title="四、VLAN部署方式"></a>四、VLAN部署方式</h2><h3 id="1、端到端vlan"><a href="#1、端到端vlan" class="headerlink" title="1、端到端vlan"></a>1、端到端vlan</h3><p>​	不会因为物理位置的因素改变vlan信息</p>
+<p>​	如果用户在区域范围内移动，vlan成员资格不变</p>
+<h3 id="2、本地vlan"><a href="#2、本地vlan" class="headerlink" title="2、本地vlan"></a>2、本地vlan</h3><p>​	会因为物理位置的因素改变vlan信息</p>
+<p>​	如果用户在区域范围内移动，vlan成员资格也会发生变化</p>
+<h2 id="五、VTP回顾（思科私有协议）"><a href="#五、VTP回顾（思科私有协议）" class="headerlink" title="五、VTP回顾（思科私有协议）"></a>五、VTP回顾（思科私有协议）</h2><h3 id="1、模式"><a href="#1、模式" class="headerlink" title="1、模式"></a>1、模式</h3><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/VTP.png" alt="VTP三种模式" style="zoom:80%;" />
+
+<h4 id="1）服务模式"><a href="#1）服务模式" class="headerlink" title="1）服务模式"></a>1）服务模式</h4><p>​		可以支持创建、修改、删除vlan，同步vlan配置</p>
+<h4 id="2）客户模式"><a href="#2）客户模式" class="headerlink" title="2）客户模式"></a>2）客户模式</h4><p>​		无法支持创建、修改、删除vlan，同步来自服务端的vlan</p>
+<h4 id="3）透明模式"><a href="#3）透明模式" class="headerlink" title="3）透明模式"></a>3）透明模式</h4><p>​		可以支持创建、修改、删除vlan，无法实现同步vlan配置</p>
+<h3 id="2、参数："><a href="#2、参数：" class="headerlink" title="2、参数："></a>2、参数：</h3><p>​		模式、密码、域名、修订版本号、修剪</p>
+<h3 id="3、建议配置顺序"><a href="#3、建议配置顺序" class="headerlink" title="3、建议配置顺序"></a>3、建议配置顺序</h3><h4 id="1）先配置接口（access、trunk）"><a href="#1）先配置接口（access、trunk）" class="headerlink" title="1）先配置接口（access、trunk）"></a>1）先配置接口（access、trunk）</h4><h4 id="2）配置vtp"><a href="#2）配置vtp" class="headerlink" title="2）配置vtp"></a>2）配置vtp</h4><h4 id="3）创建vlan信息"><a href="#3）创建vlan信息" class="headerlink" title="3）创建vlan信息"></a>3）创建vlan信息</h4><h3 id="4、基本配置："><a href="#4、基本配置：" class="headerlink" title="4、基本配置："></a>4、基本配置：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sw7(config)#vtp mode ?</span><br><span class="line">  client       Set the device to client mode.</span><br><span class="line">  off          Set the device to off mode.</span><br><span class="line">  server       Set the device to server mode.</span><br><span class="line">  transparent  Set the device to transparent mode.</span><br><span class="line">sw7(config)#vtp mode server </span><br><span class="line">sw7(config)#vtp domain yucedu</span><br><span class="line">sw7(config)#vtp password 123</span><br><span class="line">查看命令</span><br><span class="line">sw7#show vtp status</span><br><span class="line">sw7#show vtp password</span><br><span class="line">删除学习到的VLAN文件</span><br><span class="line">sw7#delete unix:vlan.dat-00112</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="六、MVRP原理与配置"><a href="#六、MVRP原理与配置" class="headerlink" title="六、MVRP原理与配置"></a>六、MVRP原理与配置</h2><h3 id="1、五种消息"><a href="#1、五种消息" class="headerlink" title="1、五种消息"></a>1、五种消息</h3><h4 id="1）joinempty"><a href="#1）joinempty" class="headerlink" title="1）joinempty"></a>1）joinempty</h4><h4 id="2）joinin"><a href="#2）joinin" class="headerlink" title="2）joinin"></a>2）joinin</h4><h4 id="3）new"><a href="#3）new" class="headerlink" title="3）new"></a>3）new</h4><h4 id="4）leave"><a href="#4）leave" class="headerlink" title="4）leave"></a>4）leave</h4><h4 id="5）leaveall"><a href="#5）leaveall" class="headerlink" title="5）leaveall"></a>5）leaveall</h4><h3 id="2、端口注册模式："><a href="#2、端口注册模式：" class="headerlink" title="2、端口注册模式："></a>2、端口注册模式：</h3><h4 id="1）normal："><a href="#1）normal：" class="headerlink" title="1）normal："></a>1）normal：</h4><p>​		可以创建和注销vlan</p>
+<h4 id="2）fixed："><a href="#2）fixed：" class="headerlink" title="2）fixed："></a>2）fixed：</h4><p>​		不可以注销vlan，可以创建vlan</p>
+<h4 id="3）forbidden："><a href="#3）forbidden：" class="headerlink" title="3）forbidden："></a>3）forbidden：</h4><p>​		不可以创建vlan，可以注销vlan</p>
+<h3 id="3、基本配置：-1"><a href="#3、基本配置：-1" class="headerlink" title="3、基本配置："></a>3、基本配置：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[sw1]mvrp global enable </span><br><span class="line">[sw1]int g1/0/1</span><br><span class="line">[sw1-GigabitEthernet1/0/1]port link-type trunk </span><br><span class="line">[sw1-GigabitEthernet1/0/1]port trunk permit vlan all </span><br><span class="line">[sw1-GigabitEthernet1/0/1]mvrp enable </span><br><span class="line">[sw1-GigabitEthernet1/0/1]mvrp registration ?</span><br><span class="line">  fixed      Specify the MVRP registration mode Fixed</span><br><span class="line">  forbidden  Specify the MVRP registration mode Forbidden</span><br><span class="line">  normal     Specify the MVRP registration mode Normal</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="七、QinQ原理与配置（dot1q-in-dot1q）"><a href="#七、QinQ原理与配置（dot1q-in-dot1q）" class="headerlink" title="七、QinQ原理与配置（dot1q in dot1q）"></a>七、QinQ原理与配置（dot1q in dot1q）</h2><p>​		<strong>主要是为了解决vlan不够用的问题，一般在运营商上进行部署</strong></p>
+<h3 id="1、工作原理"><a href="#1、工作原理" class="headerlink" title="1、工作原理"></a>1、工作原理</h3><p>​		在公网传输的过程中，设备只根据外层VLAN Tag转发报文，并根据报文外层的VLAN Tag进行MAC地址学习，而用户的私网VLAN Tag将被当作报文的数据部	分进行传输。即使私网VLAN Tag相同，也能通过公网VLAN Tag区分不同用户。</p>
+<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/QinQ工作原理.png" alt="工作原理" style="zoom:80%;" />
+
+<h3 id="2、分类："><a href="#2、分类：" class="headerlink" title="2、分类："></a>2、分类：</h3><h4 id="1）基本QinQ"><a href="#1）基本QinQ" class="headerlink" title="1）基本QinQ"></a>1）基本QinQ</h4><h4 id="2）灵活QinQ"><a href="#2）灵活QinQ" class="headerlink" title="2）灵活QinQ"></a>2）灵活QinQ</h4><h3 id="3、基本配置：-2"><a href="#3、基本配置：-2" class="headerlink" title="3、基本配置："></a>3、基本配置：</h3><h4 id="1）思科："><a href="#1）思科：" class="headerlink" title="1）思科："></a>1）思科：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Switch(config-if)#int g0/0</span><br><span class="line">Switch(config-if)#switchport mo dot1q-tunnel </span><br><span class="line">Switch(config-if)#switchport access vlan 100</span><br><span class="line">Switch(config-if)#int g0/1</span><br><span class="line">Switch(config-if)#switchport trunk encapsulation dot1q </span><br><span class="line">Switch(config-if)#switchport mo trunk</span><br></pre></td></tr></table></figure>
+
+<h4 id="2）华为-x2F-华三："><a href="#2）华为-x2F-华三：" class="headerlink" title="2）华为&#x2F;华三："></a>2）华为&#x2F;华三：</h4><h5 id="①基本QinQ："><a href="#①基本QinQ：" class="headerlink" title="①基本QinQ："></a>①基本QinQ：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[SW1] vlan batch 100 200</span><br><span class="line">[SW1] interface GigabitEthernet 0/0/1</span><br><span class="line">#配置GE0/0/1外层TAG为100</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port link-type dot1q-tunnel</span><br><span class="line">[SW1 -GigabitEthernet0/0/1] port default vlan 100</span><br><span class="line">[SW1] interface GigabitEthernet 0/0/2</span><br><span class="line">#配置GE0/0/2外层TAG为200</span><br><span class="line">[SW1-GigabitEthernet0/0/2] port link-type dot1q-tunnel</span><br><span class="line">[SW1-GigabitEthernet0/0/2] port default vlan 200</span><br><span class="line">[SW1] interface GigabitEthernet 0/0/3</span><br><span class="line">[SW1-GigabitEthernet0/0/3] port link-type trunk</span><br><span class="line">[SW1-GigabitEthernet0/0/3] port trunk allow-pass vlan 100 200</span><br><span class="line">#配置外层VLAN tag的TPID值</span><br><span class="line">[SW1-GigabitEthernet0/0/3] qinqprotocol 9100</span><br></pre></td></tr></table></figure>
+
+<h5 id="②灵活QinQ："><a href="#②灵活QinQ：" class="headerlink" title="②灵活QinQ："></a>②灵活QinQ：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[SW1] vlan batch 2 3</span><br><span class="line">[SW1] interface GigabitEthernet 0/0/1</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port link-type hybrid</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port hybrid untagged vlan 2 3</span><br><span class="line">[SW1-GigabitEthernet0/0/1] qinqvlan-translation enable</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port vlan-stacking vlan 100 stack-vlan2</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port vlan-stacking vlan 300 stack-vlan 3</span><br><span class="line">[SW1-GigabitEthernet0/0/1] quit</span><br><span class="line">[SW1] interface GigabitEthernet 0/0/2</span><br><span class="line">[SW1-GigabitEthernet0/0/2] port link-type trunk</span><br><span class="line">[SW1-GigabitEthernet0/0/2] port trunk allow-pass vlan 2 3</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据通信</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/07/07/vlan%E5%8E%9F%E7%90%86%E5%92%8C%E9%85%8D%E7%BD%AE/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-园区网架构和应用技术" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -258,24 +462,10 @@
         <h2 id="【动态路由协议】"><a href="#【动态路由协议】" class="headerlink" title="【动态路由协议】"></a>【动态路由协议】</h2><p>①距离矢量协议：发送路由更新的时候发送的是路由表<br>②链路状态协议：发送路由更新的时候发送的是拓扑表</p>
 <h2 id="【链路状态协议】"><a href="#【链路状态协议】" class="headerlink" title="【链路状态协议】"></a>【链路状态协议】</h2><p>链路：链路所连接的接口信息以及加入ospf的接口<br>状态：通过接口进行邻居关系的建立</p>
 <p>①LSA–链路状态通告：各设备的详细信息<br>②LSDB–链路状态数据库（拓扑表）：由LSA组成</p>
-<h2 id="【OSPF】"><a href="#【OSPF】" class="headerlink" title="【OSPF】"></a>【OSPF】</h2><h3 id="1、特点："><a href="#1、特点：" class="headerlink" title="1、特点："></a>1、特点：</h3><p>①开放最短路径优先，属于公有协议<br>②直接工作在IP层之上，协议号是89<br>②采用SPF算法进行路径计算（根据拓扑表运行SPF算法，得到最优且无环路径存放进路由表）<br>③支持多区域的设计，因此可以支持大型的网络规模<br>④采用组播的方式发送路由更新，组播地址<br>224.0.0.5：所有启用ospf路由协议的路由器都会加入<br>224.0.0.6：只有DR&#x2F;BDR会加入</p>
-<h3 id="2、基础术语："><a href="#2、基础术语：" class="headerlink" title="2、基础术语："></a>2、基础术语：</h3><h4 id="1）RID–router-ID：路由器标识，用来唯一标识一台启用ospf路由协议的路由器"><a href="#1）RID–router-ID：路由器标识，用来唯一标识一台启用ospf路由协议的路由器" class="headerlink" title="1）RID–router-ID：路由器标识，用来唯一标识一台启用ospf路由协议的路由器"></a>1）RID–router-ID：路由器标识，用来唯一标识一台启用ospf路由协议的路由器</h4><p>选举规则：<br>①手动指定：手动指定的RID具有最高的优先级，并且不会随着网络拓扑的变化而发生变化<br>②回环口地址：地址越大越优<br>③双up的物理接口地址：越大越优</p>
-<p>R1(config)#router ospf 1<br>R1(config-router)#router-id 1.1.1.1	–手动指定RID</p>
-<h4 id="2）度量值–开销"><a href="#2）度量值–开销" class="headerlink" title="2）度量值–开销"></a>2）度量值–开销</h4><p>cost&#x3D;10^8&#x2F;BW（BW&#x3D;&#x3D;带宽）<br>R1(config-if)#ip ospf cost n	–修改接口的开销<br>R1(config-if)#bandwidth n	–修改接口带宽</p>
-<p>R2#show int e0&#x2F;0	–查看接口带宽<br>R2#show ip ospf int e0&#x2F;0	–查看接口的开销</p>
-<h4 id="3）DR-x2F-BDR选举规则："><a href="#3）DR-x2F-BDR选举规则：" class="headerlink" title="3）DR&#x2F;BDR选举规则："></a>3）DR&#x2F;BDR选举规则：</h4><p>①比较优先级（以太网链路默认为1，越大越优；串行链路：优先级为0，表示不参与DR&#x2F;BDR的选举）<br>②比较RID：越大越优<br>R1(config-if)#ip ospf priority 5	–修改接口优先级<br>[除了DR&#x2F;BDR外，其他设备成为DROTHER]</p>
-<h3 id="3、五个报文"><a href="#3、五个报文" class="headerlink" title="3、五个报文"></a>3、五个报文</h3><p>①hello报文：发送，建立和维护邻居之间的关系（hello包中的参数hello时间：10s，死亡时间：40s）<br>②DBD：数据库摘要<br>③LSR：链路状态请求报文<br>④LSU：链路状态回复报文<br>⑤LSAck：确认报文</p>
-<h3 id="4、三张表"><a href="#4、三张表" class="headerlink" title="4、三张表"></a>4、三张表</h3><p>①邻居表：当设备启用ospf路由协议后，会向组播地址发送hello报文，如果对于hello包中的参数匹配则成功建立邻居关系，将对方的RID与学习到接口进行绑定，形成邻居表<br>R1#show ip ospf neighbor 	–查看邻居表<br>display ospf peer</p>
-<p>②拓扑表–链路状态数据库：成功建立邻居关系后，进行LSA的交互，得到链路状态数据库<br>R1#show ip ospf database 	–查看拓扑表<br>display ospf lsdb</p>
-<p>③路由表：利用拓扑表运行SPF算法得到最优路径，添加进路由表<br>R1#show ip route ospf 	–查看ospf路由表<br>display ospf routing </p>
-<h3 id="5、区域划分"><a href="#5、区域划分" class="headerlink" title="5、区域划分"></a>5、区域划分</h3><p>①主干区域（区域0）<br>②普通区域（除0以外的所有区域）</p>
-<p>思科基本配置<br>①进程下通告<br>R1(config)#router ospf 1	–启用ospf路由协议并指定进程号<br>R1(config-router)#network 172.16.12.0 0.0.0.255 area 0	–将直连网络通告进行指定区域<br>R1(config-router)#network 192.168.10.0 0.0.0.255 area 0</p>
-<p>②接口级通告<br>R2(config)#int loopback 1	–进入接口<br>R2(config-if)#ip ospf 1 area 0	–指定ospf进程和区域</p>
-<p>R1#clear ip ospf process 	–清理&#x2F;重置进程<br>Reset ALL OSPF processes? [no]: y</p>
-<p>华为基本配置：<br>[R1]ospf 1 router-id 1.1.1.1<br>[R1-ospf-1]area 0<br>[R1-ospf-1-area-0.0.0.0]network 12.12.12.0 0.0.0.255</p>
-<p>[R1-GigabitEthernet0&#x2F;0&#x2F;0]ospf cost 15	–修改接口开销<br>[R2-ospf-1]bandwidth-reference n	–修改接口带宽（所有加入ospf的接口带宽都进行修改）</p>
-<p>[R2-GigabitEthernet0&#x2F;0&#x2F;0]ospf dr-priority 5<br><R2>reset ospf process 	–重置进程<br>Warning: The OSPF process will be reset. Continue? [Y&#x2F;N]:y</p>
-
+<p><em>
+        
+          <a class="article-more-a" href="/2022/05/09/ospf/#more">more >></a>
+        
       
 
       
@@ -283,6 +473,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据通信</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       

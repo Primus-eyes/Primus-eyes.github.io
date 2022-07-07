@@ -6,15 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Tag: 数据通信 | Hexo</title>
+  <title>vlan原理和配置 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/tags/%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1/index.html">
+  <meta name="description" content="VLAN原理和配置一、实施VLAN和TRUNK1、vlan：虚拟局域网1）功能​		vlan是独立的lan网络 ​		分割广播域 2）范围​		0-4095 ​		0和4095是不能使用的，vlan1是默认存在，在思科交换机上1002-1005是默认存在的，有特殊用途 3）划分方式​		    VLAN的划分方式 VLAN 10 VLAN 20    基于接口 GE0&#x2F;0&#x2F;1，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vlan原理和配置">
+<meta property="og:url" content="http://example.com/2022/07/07/vlan%E5%8E%9F%E7%90%86%E5%92%8C%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="VLAN原理和配置一、实施VLAN和TRUNK1、vlan：虚拟局域网1）功能​		vlan是独立的lan网络 ​		分割广播域 2）范围​		0-4095 ​		0和4095是不能使用的，vlan1是默认存在，在思科交换机上1002-1005是默认存在的，有特殊用途 3）划分方式​		    VLAN的划分方式 VLAN 10 VLAN 20    基于接口 GE0&#x2F;0&#x2F;1，">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/VLAN划分方式.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/TURNK.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/access和trunk">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/Trunk 和Hybrid.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/VTP.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/QinQ工作原理.png">
+<meta property="article:published_time" content="2022-07-07T06:24:41.000Z">
+<meta property="article:modified_time" content="2022-07-07T07:50:28.836Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="数据通信">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/VLAN划分方式.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,36 +162,186 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-vlan原理和配置" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      vlan原理和配置
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/07/vlan%E5%8E%9F%E7%90%86%E5%92%8C%E9%85%8D%E7%BD%AE/" class="archive-article-date">
+
+        
+        <a href="/2022/07/07/vlan%E5%8E%9F%E7%90%86%E5%92%8C%E9%85%8D%E7%BD%AE/" class="archive-article-date">
   	<time datetime="2022-07-07T06:24:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-07</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/07/vlan%E5%8E%9F%E7%90%86%E5%92%8C%E9%85%8D%E7%BD%AE/">vlan原理和配置</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="VLAN原理和配置"><a href="#VLAN原理和配置" class="headerlink" title="VLAN原理和配置"></a>VLAN原理和配置</h1><h2 id="一、实施VLAN和TRUNK"><a href="#一、实施VLAN和TRUNK" class="headerlink" title="一、实施VLAN和TRUNK"></a>一、实施VLAN和TRUNK</h2><h3 id="1、vlan：虚拟局域网"><a href="#1、vlan：虚拟局域网" class="headerlink" title="1、vlan：虚拟局域网"></a>1、vlan：虚拟局域网</h3><h4 id="1）功能"><a href="#1）功能" class="headerlink" title="1）功能"></a>1）功能</h4><p>​		vlan是独立的lan网络</p>
+<p>​		分割广播域</p>
+<h4 id="2）范围"><a href="#2）范围" class="headerlink" title="2）范围"></a>2）范围</h4><p>​		0-4095</p>
+<p>​		0和4095是不能使用的，vlan1是默认存在，在思科交换机上1002-1005是默认存在的，有特殊用途</p>
+<h4 id="3）划分方式"><a href="#3）划分方式" class="headerlink" title="3）划分方式"></a>3）划分方式</h4><p>​		<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/VLAN划分方式.png" alt="划分方式" style="zoom:80%;" /></p>
+<table>
+<thead>
+<tr>
+<th align="center">VLAN的划分方式</th>
+<th align="center">VLAN 10</th>
+<th align="center">VLAN 20</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">基于接口</td>
+<td align="center">GE0&#x2F;0&#x2F;1，GE0&#x2F;0&#x2F;3</td>
+<td align="center">GE0&#x2F;0&#x2F;2，GE0&#x2F;0&#x2F;4</td>
+</tr>
+<tr>
+<td align="center">基于MAC地址</td>
+<td align="center">MAC 1，MAC 3</td>
+<td align="center">MAC 2，MAC 4</td>
+</tr>
+<tr>
+<td align="center">基于IP子网划分</td>
+<td align="center">10.0.1.*</td>
+<td align="center">10.0.2.*</td>
+</tr>
+<tr>
+<td align="center">基于协议划分</td>
+<td align="center">IP</td>
+<td align="center">IPv6</td>
+</tr>
+<tr>
+<td align="center">基于策略</td>
+<td align="center">10.0.1.* + GE0&#x2F;0&#x2F;1 + MAC 1</td>
+<td align="center">10.0.2.* + GE0&#x2F;0&#x2F;2 + MAC 2</td>
+</tr>
+</tbody></table>
+<h4 id="4）匹配顺序"><a href="#4）匹配顺序" class="headerlink" title="4）匹配顺序"></a>4）匹配顺序</h4><p>​		基于mac地址-&gt;基于IP子网-&gt;基于协议-&gt;基于接口</p>
+<h4 id="5）本征vlan（PVID）"><a href="#5）本征vlan（PVID）" class="headerlink" title="5）本征vlan（PVID）"></a>5）本征vlan（PVID）</h4><p>​		默认为1，可以不携带标签进行发送</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Switch(config-if)#switchport trunk native vlan 10</span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+<h3 id="2、TRUNK"><a href="#2、TRUNK" class="headerlink" title="2、TRUNK"></a>2、TRUNK</h3><h4 id="1）概述"><a href="#1）概述" class="headerlink" title="1）概述"></a>1）概述</h4><p>​		一个TRUNK可传输来自多个VLAN的流量</p>
+<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/TURNK.png" alt="TRUNK" style="zoom:80%;" />
+
+<h4 id="2）Access链路和Trunk链路"><a href="#2）Access链路和Trunk链路" class="headerlink" title="2）Access链路和Trunk链路"></a>2）Access链路和Trunk链路</h4><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/access和trunk'.png" alt="Access和Trunk" style="zoom:80%;" />
+
+<h4 id="3）Hybrid链路和Trunk链路的区别"><a href="#3）Hybrid链路和Trunk链路的区别" class="headerlink" title="3）Hybrid链路和Trunk链路的区别"></a>3）Hybrid链路和Trunk链路的区别</h4><p>​		①Hybrid端口允许多个VLAN的以太网帧不带标签</p>
+<p>​		②Trunk端口只允许缺省VLAN的以太网不带标签</p>
+<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/Trunk 和Hybrid.png" alt="Hybrid" style="zoom:80%;" />
+
+<h2 id="二、DTP：动态TRUNK协商，思科私有协议"><a href="#二、DTP：动态TRUNK协商，思科私有协议" class="headerlink" title="二、DTP：动态TRUNK协商，思科私有协议"></a>二、DTP：动态TRUNK协商，思科私有协议</h2><h3 id="1、作用："><a href="#1、作用：" class="headerlink" title="1、作用："></a>1、作用：</h3><p>用于交换机之间是否处于trunk模式下进行工作</p>
+<h3 id="2、模式："><a href="#2、模式：" class="headerlink" title="2、模式："></a>2、模式：</h3><h4 id="1）动态期望："><a href="#1）动态期望：" class="headerlink" title="1）动态期望："></a>1）动态期望：</h4><p>​		主动模式，主动询问对方是否要在trunk模式下进行工作</p>
+<h4 id="2）动态自动："><a href="#2）动态自动：" class="headerlink" title="2）动态自动："></a>2）动态自动：</h4><p>​		被动模式，被动等待对方询问我在trunk模式下进行工作</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>动态自动</th>
+<th>动态期望</th>
+<th>TRUNK</th>
+<th>接入</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>动态自动</td>
+<td>接入</td>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>接入</td>
+</tr>
+<tr>
+<td>动态期望</td>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>接入</td>
+</tr>
+<tr>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>TRUNK</td>
+<td>有限的连接</td>
+</tr>
+<tr>
+<td>接入</td>
+<td>接入</td>
+<td>接入</td>
+<td>有限的连接</td>
+<td>接入</td>
+</tr>
+</tbody></table>
+<h3 id="3、基本配置："><a href="#3、基本配置：" class="headerlink" title="3、基本配置："></a>3、基本配置：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#int e0/0</span><br><span class="line">Switch(config-if)#switchport mode dynamic desirable---配置为主动模式</span><br><span class="line">Switch(config-if)#switchport mode dynamic auto---配置为被动模式</span><br><span class="line"></span><br><span class="line">Switch#show int trunk</span><br></pre></td></tr></table></figure>
+
+<h2 id="3、WLAN："><a href="#3、WLAN：" class="headerlink" title="3、WLAN："></a>3、WLAN：</h2><h3 id="1、分类："><a href="#1、分类：" class="headerlink" title="1、分类："></a>1、分类：</h3><p>​	①独立WLAN<br>​	②基于控制器的WLAN</p>
+<h3 id="2、组网架构："><a href="#2、组网架构：" class="headerlink" title="2、组网架构："></a>2、组网架构：</h3><h4 id="1）胖AP："><a href="#1）胖AP：" class="headerlink" title="1）胖AP："></a>1）胖AP：</h4><p>​		一般用于家庭等环境</p>
+<h4 id="2）AC-瘦AP："><a href="#2）AC-瘦AP：" class="headerlink" title="2）AC+瘦AP："></a>2）AC+瘦AP：</h4><p>​		一般用于企业网</p>
+<p>​		AP和AC之间通过CAPWAP隧道进行通信</p>
+<h2 id="四、VLAN部署方式"><a href="#四、VLAN部署方式" class="headerlink" title="四、VLAN部署方式"></a>四、VLAN部署方式</h2><h3 id="1、端到端vlan"><a href="#1、端到端vlan" class="headerlink" title="1、端到端vlan"></a>1、端到端vlan</h3><p>​	不会因为物理位置的因素改变vlan信息</p>
+<p>​	如果用户在区域范围内移动，vlan成员资格不变</p>
+<h3 id="2、本地vlan"><a href="#2、本地vlan" class="headerlink" title="2、本地vlan"></a>2、本地vlan</h3><p>​	会因为物理位置的因素改变vlan信息</p>
+<p>​	如果用户在区域范围内移动，vlan成员资格也会发生变化</p>
+<h2 id="五、VTP回顾（思科私有协议）"><a href="#五、VTP回顾（思科私有协议）" class="headerlink" title="五、VTP回顾（思科私有协议）"></a>五、VTP回顾（思科私有协议）</h2><h3 id="1、模式"><a href="#1、模式" class="headerlink" title="1、模式"></a>1、模式</h3><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/VTP.png" alt="VTP三种模式" style="zoom:80%;" />
+
+<h4 id="1）服务模式"><a href="#1）服务模式" class="headerlink" title="1）服务模式"></a>1）服务模式</h4><p>​		可以支持创建、修改、删除vlan，同步vlan配置</p>
+<h4 id="2）客户模式"><a href="#2）客户模式" class="headerlink" title="2）客户模式"></a>2）客户模式</h4><p>​		无法支持创建、修改、删除vlan，同步来自服务端的vlan</p>
+<h4 id="3）透明模式"><a href="#3）透明模式" class="headerlink" title="3）透明模式"></a>3）透明模式</h4><p>​		可以支持创建、修改、删除vlan，无法实现同步vlan配置</p>
+<h3 id="2、参数："><a href="#2、参数：" class="headerlink" title="2、参数："></a>2、参数：</h3><p>​		模式、密码、域名、修订版本号、修剪</p>
+<h3 id="3、建议配置顺序"><a href="#3、建议配置顺序" class="headerlink" title="3、建议配置顺序"></a>3、建议配置顺序</h3><h4 id="1）先配置接口（access、trunk）"><a href="#1）先配置接口（access、trunk）" class="headerlink" title="1）先配置接口（access、trunk）"></a>1）先配置接口（access、trunk）</h4><h4 id="2）配置vtp"><a href="#2）配置vtp" class="headerlink" title="2）配置vtp"></a>2）配置vtp</h4><h4 id="3）创建vlan信息"><a href="#3）创建vlan信息" class="headerlink" title="3）创建vlan信息"></a>3）创建vlan信息</h4><h3 id="4、基本配置："><a href="#4、基本配置：" class="headerlink" title="4、基本配置："></a>4、基本配置：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">sw7(config)#vtp mode ?</span><br><span class="line">  client       Set the device to client mode.</span><br><span class="line">  off          Set the device to off mode.</span><br><span class="line">  server       Set the device to server mode.</span><br><span class="line">  transparent  Set the device to transparent mode.</span><br><span class="line">sw7(config)#vtp mode server </span><br><span class="line">sw7(config)#vtp domain yucedu</span><br><span class="line">sw7(config)#vtp password 123</span><br><span class="line">查看命令</span><br><span class="line">sw7#show vtp status</span><br><span class="line">sw7#show vtp password</span><br><span class="line">删除学习到的VLAN文件</span><br><span class="line">sw7#delete unix:vlan.dat-00112</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="六、MVRP原理与配置"><a href="#六、MVRP原理与配置" class="headerlink" title="六、MVRP原理与配置"></a>六、MVRP原理与配置</h2><h3 id="1、五种消息"><a href="#1、五种消息" class="headerlink" title="1、五种消息"></a>1、五种消息</h3><h4 id="1）joinempty"><a href="#1）joinempty" class="headerlink" title="1）joinempty"></a>1）joinempty</h4><h4 id="2）joinin"><a href="#2）joinin" class="headerlink" title="2）joinin"></a>2）joinin</h4><h4 id="3）new"><a href="#3）new" class="headerlink" title="3）new"></a>3）new</h4><h4 id="4）leave"><a href="#4）leave" class="headerlink" title="4）leave"></a>4）leave</h4><h4 id="5）leaveall"><a href="#5）leaveall" class="headerlink" title="5）leaveall"></a>5）leaveall</h4><h3 id="2、端口注册模式："><a href="#2、端口注册模式：" class="headerlink" title="2、端口注册模式："></a>2、端口注册模式：</h3><h4 id="1）normal："><a href="#1）normal：" class="headerlink" title="1）normal："></a>1）normal：</h4><p>​		可以创建和注销vlan</p>
+<h4 id="2）fixed："><a href="#2）fixed：" class="headerlink" title="2）fixed："></a>2）fixed：</h4><p>​		不可以注销vlan，可以创建vlan</p>
+<h4 id="3）forbidden："><a href="#3）forbidden：" class="headerlink" title="3）forbidden："></a>3）forbidden：</h4><p>​		不可以创建vlan，可以注销vlan</p>
+<h3 id="3、基本配置：-1"><a href="#3、基本配置：-1" class="headerlink" title="3、基本配置："></a>3、基本配置：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[sw1]mvrp global enable </span><br><span class="line">[sw1]int g1/0/1</span><br><span class="line">[sw1-GigabitEthernet1/0/1]port link-type trunk </span><br><span class="line">[sw1-GigabitEthernet1/0/1]port trunk permit vlan all </span><br><span class="line">[sw1-GigabitEthernet1/0/1]mvrp enable </span><br><span class="line">[sw1-GigabitEthernet1/0/1]mvrp registration ?</span><br><span class="line">  fixed      Specify the MVRP registration mode Fixed</span><br><span class="line">  forbidden  Specify the MVRP registration mode Forbidden</span><br><span class="line">  normal     Specify the MVRP registration mode Normal</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="七、QinQ原理与配置（dot1q-in-dot1q）"><a href="#七、QinQ原理与配置（dot1q-in-dot1q）" class="headerlink" title="七、QinQ原理与配置（dot1q in dot1q）"></a>七、QinQ原理与配置（dot1q in dot1q）</h2><p>​		<strong>主要是为了解决vlan不够用的问题，一般在运营商上进行部署</strong></p>
+<h3 id="1、工作原理"><a href="#1、工作原理" class="headerlink" title="1、工作原理"></a>1、工作原理</h3><p>​		在公网传输的过程中，设备只根据外层VLAN Tag转发报文，并根据报文外层的VLAN Tag进行MAC地址学习，而用户的私网VLAN Tag将被当作报文的数据部	分进行传输。即使私网VLAN Tag相同，也能通过公网VLAN Tag区分不同用户。</p>
+<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/QinQ工作原理.png" alt="工作原理" style="zoom:80%;" />
+
+<h3 id="2、分类："><a href="#2、分类：" class="headerlink" title="2、分类："></a>2、分类：</h3><h4 id="1）基本QinQ"><a href="#1）基本QinQ" class="headerlink" title="1）基本QinQ"></a>1）基本QinQ</h4><h4 id="2）灵活QinQ"><a href="#2）灵活QinQ" class="headerlink" title="2）灵活QinQ"></a>2）灵活QinQ</h4><h3 id="3、基本配置：-2"><a href="#3、基本配置：-2" class="headerlink" title="3、基本配置："></a>3、基本配置：</h3><h4 id="1）思科："><a href="#1）思科：" class="headerlink" title="1）思科："></a>1）思科：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Switch(config-if)#int g0/0</span><br><span class="line">Switch(config-if)#switchport mo dot1q-tunnel </span><br><span class="line">Switch(config-if)#switchport access vlan 100</span><br><span class="line">Switch(config-if)#int g0/1</span><br><span class="line">Switch(config-if)#switchport trunk encapsulation dot1q </span><br><span class="line">Switch(config-if)#switchport mo trunk</span><br></pre></td></tr></table></figure>
+
+<h4 id="2）华为-x2F-华三："><a href="#2）华为-x2F-华三：" class="headerlink" title="2）华为&#x2F;华三："></a>2）华为&#x2F;华三：</h4><h5 id="①基本QinQ："><a href="#①基本QinQ：" class="headerlink" title="①基本QinQ："></a>①基本QinQ：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[SW1] vlan batch 100 200</span><br><span class="line">[SW1] interface GigabitEthernet 0/0/1</span><br><span class="line">#配置GE0/0/1外层TAG为100</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port link-type dot1q-tunnel</span><br><span class="line">[SW1 -GigabitEthernet0/0/1] port default vlan 100</span><br><span class="line">[SW1] interface GigabitEthernet 0/0/2</span><br><span class="line">#配置GE0/0/2外层TAG为200</span><br><span class="line">[SW1-GigabitEthernet0/0/2] port link-type dot1q-tunnel</span><br><span class="line">[SW1-GigabitEthernet0/0/2] port default vlan 200</span><br><span class="line">[SW1] interface GigabitEthernet 0/0/3</span><br><span class="line">[SW1-GigabitEthernet0/0/3] port link-type trunk</span><br><span class="line">[SW1-GigabitEthernet0/0/3] port trunk allow-pass vlan 100 200</span><br><span class="line">#配置外层VLAN tag的TPID值</span><br><span class="line">[SW1-GigabitEthernet0/0/3] qinqprotocol 9100</span><br></pre></td></tr></table></figure>
+
+<h5 id="②灵活QinQ："><a href="#②灵活QinQ：" class="headerlink" title="②灵活QinQ："></a>②灵活QinQ：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[SW1] vlan batch 2 3</span><br><span class="line">[SW1] interface GigabitEthernet 0/0/1</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port link-type hybrid</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port hybrid untagged vlan 2 3</span><br><span class="line">[SW1-GigabitEthernet0/0/1] qinqvlan-translation enable</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port vlan-stacking vlan 100 stack-vlan2</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port vlan-stacking vlan 300 stack-vlan 3</span><br><span class="line">[SW1-GigabitEthernet0/0/1] quit</span><br><span class="line">[SW1] interface GigabitEthernet 0/0/2</span><br><span class="line">[SW1-GigabitEthernet0/0/2] port link-type trunk</span><br><span class="line">[SW1-GigabitEthernet0/0/2] port trunk allow-pass vlan 2 3</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,95 +353,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/07/vlan%E5%8E%9F%E7%90%86%E5%92%8C%E9%85%8D%E7%BD%AE/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/06/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84%E5%92%8C%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2022-07-06T12:13:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/07/06/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84%E5%92%8C%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">园区网架构和应用技术</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/06/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84%E5%92%8C%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF/">园区网架构和应用技术</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/05/09/ospf/" class="archive-article-date">
-  	<time datetime="2022-05-09T11:29:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/05/09/ospf/">ospf</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
 
 
           </div>
@@ -302,9 +475,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
