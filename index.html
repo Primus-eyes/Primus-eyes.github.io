@@ -179,52 +179,10 @@
 <p>校园网络</p>
 <p>政务园区网络</p>
 <p>商业园区网络</p>
-<h3 id="3、分层网络设计"><a href="#3、分层网络设计" class="headerlink" title="3、分层网络设计"></a>3、分层网络设计</h3><p>平面网络</p>
-<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/平面网络.png" alt="平面网络" style="zoom:67%;" />
-
-<p>分层网络</p>
-<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/分层网络.png" alt="分层网络" style="zoom:80%;" />
-
-<h3 id="4、园区网络构架"><a href="#4、园区网络构架" class="headerlink" title="4、园区网络构架"></a>4、园区网络构架</h3><p>①接入层：终端设备的接入</p>
-<p>​	网络设备：二层交换机</p>
-<p>②汇聚层（分布层）：汇聚接入层的流量</p>
-<p>​	网络设备：三层交换机</p>
-<p>③核心层：快速转发、拥有稳定可靠的高冗余设计</p>
-<p>​	网络设备：三层交换机、路由器</p>
-<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/82QGY2PV9XSD7QIT7L9@C_M.png" alt="园区网络构架" style="zoom: 67%;" />
-
-<h3 id="5、园区网络主要协议-x2F-技术"><a href="#5、园区网络主要协议-x2F-技术" class="headerlink" title="5、园区网络主要协议&#x2F;技术"></a>5、园区网络主要协议&#x2F;技术</h3><p><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/%E5%9B%AD%E5%8C%BA%E7%BD%91%E7%BB%9C%E4%B8%BB%E8%A6%81%E5%8D%8F%E8%AE%AE%E6%8A%80%E6%9C%AF.png" alt="协议/技术"></p>
-<h2 id="二、二层交换和多层交换"><a href="#二、二层交换和多层交换" class="headerlink" title="二、二层交换和多层交换"></a>二、二层交换和多层交换</h2><h3 id="1、二层交换机和多层交换机的区别"><a href="#1、二层交换机和多层交换机的区别" class="headerlink" title="1、二层交换机和多层交换机的区别"></a>1、二层交换机和多层交换机的区别</h3><h4 id="（1）二层交换机："><a href="#（1）二层交换机：" class="headerlink" title="（1）二层交换机："></a>（1）二层交换机：</h4><p>​		只有交换功能。依靠CAM表（MAC地址表）进行数据的转发</p>
-<p>​		CAM表里面，记录的是mac地址、接口、vlan、类型</p>
-<h4 id="（2）多层交换机："><a href="#（2）多层交换机：" class="headerlink" title="（2）多层交换机："></a>（2）多层交换机：</h4><p>​		具有交换+路由功能，依靠TCAM表（CAM表+FIB表）进行数据的转发</p>
-<p>​		FIB表类似于路由表，包含IP地址、出接口、下一跳地址</p>
-<p>​		数据处理方式：<br>​		先查看TCAM表-&gt;ACL-&gt;Qos</p>
-<h2 id="三、三种数据处理方式"><a href="#三、三种数据处理方式" class="headerlink" title="三、三种数据处理方式"></a>三、三种数据处理方式</h2><h3 id="1、数据处理方式："><a href="#1、数据处理方式：" class="headerlink" title="1、数据处理方式："></a>1、数据处理方式：</h3><p>（1）数据平面</p>
-<p>（2）控制平面</p>
-<p>（3）管理平面</p>
-<p><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/%E6%8E%A7%E5%88%B6%E5%B9%B3%E9%9D%A2%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%B9%B3%E9%9D%A2.png" alt="控制平面与数据平面"></p>
-<h3 id="2、交换机的三大功能-x2F-工作原理："><a href="#2、交换机的三大功能-x2F-工作原理：" class="headerlink" title="2、交换机的三大功能&#x2F;工作原理："></a>2、交换机的三大功能&#x2F;工作原理：</h3><h4 id="（1）MAC地址的学习："><a href="#（1）MAC地址的学习：" class="headerlink" title="（1）MAC地址的学习："></a>（1）MAC地址的学习：</h4><p>​			当交换机收到一个数据帧的时候，首先会查看数据帧的源mac地址，将该mac地址和对应的接收接口记录到mac地址表里</p>
-<h4 id="（2）帧的过滤和转发："><a href="#（2）帧的过滤和转发：" class="headerlink" title="（2）帧的过滤和转发："></a>（2）帧的过滤和转发：</h4><p>​			当交换机收到一个数据帧的时候，会查看数据帧的mac地址，通过查找mac地址表进行转发：</p>
-<h5 id="1）已知单播帧："><a href="#1）已知单播帧：" class="headerlink" title="1）已知单播帧："></a>1）已知单播帧：</h5><p>​			①如果mac地址表里有对应的信息，接收接口和转发接口一致的时候，丢弃</p>
-<p>​			②如果mac地址表里有对应的信息，接收接口和转发接口不一致的时候，根据mac地址表直接转发</p>
-<h5 id="2）未知单播帧：（mac地址表和ARP表老化时间不一致导致）"><a href="#2）未知单播帧：（mac地址表和ARP表老化时间不一致导致）" class="headerlink" title="2）未知单播帧：（mac地址表和ARP表老化时间不一致导致）"></a>2）未知单播帧：（mac地址表和ARP表老化时间不一致导致）</h5><p>​			如果mac地址表里没有对应的信息，除了接收接口以外的其他所有接口进行泛洪</p>
-<h5 id="3）广播帧："><a href="#3）广播帧：" class="headerlink" title="3）广播帧："></a>3）广播帧：</h5><p>​			除了接收接口以外的其他所有接口进行泛洪</p>
-<h4 id="（3）环路的避免：STP"><a href="#（3）环路的避免：STP" class="headerlink" title="（3）环路的避免：STP"></a>（3）环路的避免：STP</h4><h3 id="4、思科交换方法："><a href="#4、思科交换方法：" class="headerlink" title="4、思科交换方法："></a>4、思科交换方法：</h3><h4 id="（1）过程交换："><a href="#（1）过程交换：" class="headerlink" title="（1）过程交换："></a>（1）过程交换：</h4><p>​		发送数据包的时候，CPU每次都会进行检查</p>
-<h4 id="（2）快速交换（缓存交换）："><a href="#（2）快速交换（缓存交换）：" class="headerlink" title="（2）快速交换（缓存交换）："></a>（2）快速交换（缓存交换）：</h4><p>​		发送数据包的时候，CPU第一次会进行检查，然后缓存下来，后续相同的数据包发送的时候就可以直接转发，前提是源目IP地址、源目MAC地址都必须要一致</p>
-<h4 id="（3）思科快速转发：CEF"><a href="#（3）思科快速转发：CEF" class="headerlink" title="（3）思科快速转发：CEF"></a>（3）思科快速转发：CEF</h4><p>​		主要依靠两张表：<br>​		FIB表+ADJ表</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sw1#show adjacency---查看ADJ表</span><br></pre></td></tr></table></figure>
-
-<h2 id="四、交换机端口类型回顾："><a href="#四、交换机端口类型回顾：" class="headerlink" title="四、交换机端口类型回顾："></a>四、交换机端口类型回顾：</h2><h3 id="1、三种模式"><a href="#1、三种模式" class="headerlink" title="1、三种模式"></a>1、三种模式</h3><h4 id="（1）access：接入端口模式"><a href="#（1）access：接入端口模式" class="headerlink" title="（1）access：接入端口模式"></a>（1）access：接入端口模式</h4><p>​		一个接口只允许一个vlan通过</p>
-<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/access.png" alt="access" style="zoom:80%;" />
-
-<h4 id="（2）trunk：中继端口模式"><a href="#（2）trunk：中继端口模式" class="headerlink" title="（2）trunk：中继端口模式"></a>（2）trunk：中继端口模式</h4><p>​		一个接口允许多个vlan通过，本征vlan通过时，可以不携带标签</p>
-<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/trunk.png" alt="trunk" style="zoom:80%;" />
-
-<h4 id="（3）hybrid：混杂端口模式"><a href="#（3）hybrid：混杂端口模式" class="headerlink" title="（3）hybrid：混杂端口模式"></a>（3）hybrid：混杂端口模式</h4><p>​		一个接口允许多个vlan通过，可以允许多个vlan不打标签</p>
-<p>​		PVID：本征vlan</p>
-<p>​		帧重写：<br>​		在数据发送的过程中，源目IP地址是不会改变的，源目mac地址是会改变的</p>
-<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/hybrid.png" alt="hybrid" style="zoom:80%;" />
-
+<p><em>
+        
+          <a class="article-more-a" href="/2022/07/06/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84%E5%92%8C%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF/#more">more >></a>
+        
       
 
       
