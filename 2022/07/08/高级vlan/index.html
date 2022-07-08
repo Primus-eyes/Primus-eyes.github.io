@@ -8,18 +8,28 @@
   <link rel="dns-prefetch" href="http://example.com">
   <title>高级vlan | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="高级VLAN">
+  <meta name="description" content="高级VLAN一、思科PVLAN(思科私有协议)  1、作用：​	可以节约vlan数量，并且可以控制同一个vlan里面的访问权限，简化IP地址 2、端口类型  1）隔离端口​		处于隔离端口的用户是无法互相进行通信的，只能和混杂端口进行通信 2）团体端口​		处于团体端口的用户是可以和混杂端口以及同一个团体的团体端口互相进行通信的 3）混杂端口​		处于混杂端口的用户可以与隔离端口与和团体端口进行通">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高级vlan">
 <meta property="og:url" content="http://example.com/2022/07/08/%E9%AB%98%E7%BA%A7vlan/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="高级VLAN">
+<meta property="og:description" content="高级VLAN一、思科PVLAN(思科私有协议)  1、作用：​	可以节约vlan数量，并且可以控制同一个vlan里面的访问权限，简化IP地址 2、端口类型  1）隔离端口​		处于隔离端口的用户是无法互相进行通信的，只能和混杂端口进行通信 2）团体端口​		处于团体端口的用户是可以和混杂端口以及同一个团体的团体端口互相进行通信的 3）混杂端口​		处于混杂端口的用户可以与隔离端口与和团体端口进行通">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/PVLAN.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/PVLAN端口类型.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/MUX VLAN.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/端口隔离.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/Private VLAN.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/Super VLAN.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/普通ARP.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/本地ARP.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/聚合.png">
 <meta property="article:published_time" content="2022-07-08T01:12:11.000Z">
-<meta property="article:modified_time" content="2022-07-08T02:37:09.835Z">
+<meta property="article:modified_time" content="2022-07-08T03:50:39.750Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="数据通信">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/PVLAN.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -175,7 +185,60 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="高级VLAN"><a href="#高级VLAN" class="headerlink" title="高级VLAN"></a>高级VLAN</h1>
+        <h1 id="高级VLAN"><a href="#高级VLAN" class="headerlink" title="高级VLAN"></a>高级VLAN</h1><h2 id="一、思科PVLAN-思科私有协议"><a href="#一、思科PVLAN-思科私有协议" class="headerlink" title="一、思科PVLAN(思科私有协议)"></a>一、思科PVLAN(思科私有协议)</h2><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/PVLAN.png" alt="PVLAN" style="zoom:67%;" />
+
+<h3 id="1、作用："><a href="#1、作用：" class="headerlink" title="1、作用："></a>1、作用：</h3><p>​	可以节约vlan数量，并且可以控制同一个vlan里面的访问权限，简化IP地址</p>
+<h3 id="2、端口类型"><a href="#2、端口类型" class="headerlink" title="2、端口类型"></a>2、端口类型</h3><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/PVLAN端口类型.png" alt="端口类型" style="zoom:67%;" />
+
+<h4 id="1）隔离端口"><a href="#1）隔离端口" class="headerlink" title="1）隔离端口"></a>1）隔离端口</h4><p>​		处于隔离端口的用户是无法互相进行通信的，只能和混杂端口进行通信</p>
+<h4 id="2）团体端口"><a href="#2）团体端口" class="headerlink" title="2）团体端口"></a>2）团体端口</h4><p>​		处于团体端口的用户是可以和混杂端口以及同一个团体的团体端口互相进行通信的</p>
+<h4 id="3）混杂端口"><a href="#3）混杂端口" class="headerlink" title="3）混杂端口"></a>3）混杂端口</h4><p>​		处于混杂端口的用户可以与隔离端口与和团体端口进行通信</p>
+<h3 id="3、VLAN角色"><a href="#3、VLAN角色" class="headerlink" title="3、VLAN角色"></a>3、VLAN角色</h3><h4 id="1）辅助vlan："><a href="#1）辅助vlan：" class="headerlink" title="1）辅助vlan："></a>1）辅助vlan：</h4><h5 id="①隔离vlan："><a href="#①隔离vlan：" class="headerlink" title="①隔离vlan："></a>①隔离vlan：</h5><p>​			处于隔离vlan的端口只能和主vlan进行通信</p>
+<h5 id="②团体vlan："><a href="#②团体vlan：" class="headerlink" title="②团体vlan："></a>②团体vlan：</h5><p>​			处于团体vlan的端口可以和同一个团体的团体端口以及主vlan进行通信</p>
+<h4 id="2）主vlan："><a href="#2）主vlan：" class="headerlink" title="2）主vlan："></a>2）主vlan：</h4><p>​		处于主vlan的端口可以和隔离vlan、团体vlan互相通信</p>
+<h3 id="4、基本配置："><a href="#4、基本配置：" class="headerlink" title="4、基本配置："></a>4、基本配置：</h3><p>​	前提：使用PVLAN的时候必须要把VTP设置为透明模式或者关闭VTP</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sw(config)#vtp mode transparent        </span><br><span class="line">sw(config)#vtp mode off </span><br></pre></td></tr></table></figure>
+
+<h4 id="1）：定义vlan角色："><a href="#1）：定义vlan角色：" class="headerlink" title="1）：定义vlan角色："></a>1）：定义vlan角色：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">sw(config)#vlan 100</span><br><span class="line">sw(config-vlan)#private-vlan primary </span><br><span class="line">sw(config-vlan)#vlan 10 </span><br><span class="line">sw(config-vlan)#private-vlan isolated </span><br><span class="line">sw(config-vlan)#vlan 20 </span><br><span class="line">sw(config-vlan)#private-vlan community </span><br><span class="line">sw(config-vlan)#vlan 100</span><br><span class="line">sw(config-vlan)#private-vlan association 10,20</span><br></pre></td></tr></table></figure>
+
+<h4 id="2）定义端口角色："><a href="#2）定义端口角色：" class="headerlink" title="2）定义端口角色："></a>2）定义端口角色：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">sw(config)#int e1/0</span><br><span class="line">sw(config-if)#switchport mode private-vlan promiscuous </span><br><span class="line">sw(config-if)#switchport private-vlan mapping 100 10,20</span><br><span class="line">sw(config)#int range e0/0-1</span><br><span class="line">sw(config-if-range)#switchport mo private-vlan host</span><br><span class="line">sw(config-if-range)#switchport private-vlan host-association 100 10</span><br><span class="line">sw(config)#int range e0/2-3</span><br><span class="line">sw(config-if-range)#switchport private-vlan host-association 100 20</span><br><span class="line">sw(config-if-range)#switchport mo private-vlan host </span><br></pre></td></tr></table></figure>
+
+<h3 id="2、保护端口：PVLAN边缘"><a href="#2、保护端口：PVLAN边缘" class="headerlink" title="2、保护端口：PVLAN边缘"></a>2、保护端口：PVLAN边缘</h3><p>在某些设备型号比较低端，不支持PVLAN功能的交换机下可以使用此功能，仅本地有效</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#int range e0/1-2</span><br><span class="line">Switch(config-if-range)#switchport protected </span><br></pre></td></tr></table></figure>
+
+<h2 id="二、华为MUX-VLAN"><a href="#二、华为MUX-VLAN" class="headerlink" title="二、华为MUX VLAN"></a>二、华为MUX VLAN</h2><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/MUX VLAN.png" alt="MUX"  />
+
+<h3 id="1、vlan角色："><a href="#1、vlan角色：" class="headerlink" title="1、vlan角色："></a>1、vlan角色：</h3><h4 id="1）主vlan"><a href="#1）主vlan" class="headerlink" title="1）主vlan"></a>1）主vlan</h4><h4 id="2）从vlan：类似于思科PVLAN中的辅助vlan"><a href="#2）从vlan：类似于思科PVLAN中的辅助vlan" class="headerlink" title="2）从vlan：类似于思科PVLAN中的辅助vlan"></a>2）从vlan：类似于思科PVLAN中的辅助vlan</h4><p>​		①隔离型vlan<br>​		②互通型vlan</p>
+<h3 id="2、基本配置："><a href="#2、基本配置：" class="headerlink" title="2、基本配置："></a>2、基本配置：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[SW1] vlan batch 10 20 30 100#创建所有VLAN</span><br><span class="line">[SW1] vlan 100</span><br><span class="line">[SW1-vlan100] mux-vlan</span><br><span class="line">#指定VLAN100为主VLAN</span><br><span class="line">[SW1-vlan100] subordinate group 10 20</span><br><span class="line">#指定VLAN10，20为互通型从VLAN</span><br><span class="line">[SW1-vlan100] subordinate separate 30</span><br><span class="line">#指定VLAN30为隔离型从VLAN</span><br><span class="line">[SW1] interface GigabitEthernet0/0/1</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port link-type access</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port default vlan 10</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port mux-vlan enable vlan 10</span><br><span class="line">#接口加入相关VLAN，并且激活MUX VLAN功能</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、华为端口隔离："><a href="#3、华为端口隔离：" class="headerlink" title="3、华为端口隔离："></a>3、华为端口隔离：</h3><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/端口隔离.png" alt="端口隔离" style="zoom:80%;" />
+
+<h4 id="1）隔离类型："><a href="#1）隔离类型：" class="headerlink" title="1）隔离类型："></a>1）隔离类型：</h4><h5 id="①单向隔离"><a href="#①单向隔离" class="headerlink" title="①单向隔离"></a>①单向隔离</h5><p>​			只有一方能够访问到对方</p>
+<h5 id="②双向隔离"><a href="#②双向隔离" class="headerlink" title="②双向隔离"></a>②双向隔离</h5><p>​			双方都不能互相通信</p>
+<h4 id="2）隔离模式："><a href="#2）隔离模式：" class="headerlink" title="2）隔离模式："></a>2）隔离模式：</h4><h5 id="①L2：二层隔离"><a href="#①L2：二层隔离" class="headerlink" title="①L2：二层隔离"></a>①L2：二层隔离</h5><h5 id="②ALL：二层三层都隔离"><a href="#②ALL：二层三层都隔离" class="headerlink" title="②ALL：二层三层都隔离"></a>②ALL：二层三层都隔离</h5><h4 id="3）基本配置："><a href="#3）基本配置：" class="headerlink" title="3）基本配置："></a>3）基本配置：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[Switch] vlan 2</span><br><span class="line">[Switch] port-isolate mode all</span><br><span class="line">[Switch] interface GigabitEthernet 0/0/1</span><br><span class="line">[Switch-GigabitEthernet0/0/1] port link-type access</span><br><span class="line">[Switch-GigabitEthernet0/0/1] port default vlan2</span><br><span class="line">[Switch-GigabitEthernet0/0/1] port-isolate enable group 2</span><br><span class="line">[Switch] interface GigabitEthernet0/0/2</span><br><span class="line">[Switch-GigabitEthernet0/0/2] port link-type access</span><br><span class="line">[Switch-GigabitEthernet0/0/2] port default vlan2</span><br><span class="line">[Switch-GigabitEthernet0/0/2] port-isolate enable group 2</span><br><span class="line">[Switch] interface GigabitEthernet0/0/3</span><br><span class="line">[Switch-GigabitEthernet0/0/3] port link-type access</span><br><span class="line">[Switch-GigabitEthernet0/0/3] port default vlan2</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="三、华三Private-VLAN"><a href="#三、华三Private-VLAN" class="headerlink" title="三、华三Private VLAN"></a>三、华三Private VLAN</h2><h3 id="1、基本配置："><a href="#1、基本配置：" class="headerlink" title="1、基本配置："></a>1、基本配置：</h3><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/Private VLAN.png" alt="Private" style="zoom:80%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[SWA]vlan 2 to 3</span><br><span class="line">[SWA]vlan 10</span><br><span class="line">[SWA-vlan10]private-vlan primary</span><br><span class="line">[SWA-vlan10]private-vlan secondary 2 3</span><br><span class="line">[SWA]interface GigabitEthernet 1/0/3</span><br><span class="line">[SWA-GigabitEthernet1/0/3] port private-vlan 10 promiscuous</span><br><span class="line">[SWA]interface GigabitEthernet 1/0/1</span><br><span class="line">[SWA-GigabitEthernet1/0/1] port access vlan 2</span><br><span class="line">[SWA-GigabitEthernet1/0/1] port private-vlan host</span><br><span class="line">[SWA]interface GigabitEthernet 1/0/2</span><br><span class="line">[SWA-GigabitEthernet1/0/2] port access vlan 3</span><br><span class="line">[SWA-GigabitEthernet1/0/2] port private-vlan host</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="四、华三Super-VLAN"><a href="#四、华三Super-VLAN" class="headerlink" title="四、华三Super VLAN"></a>四、华三Super VLAN</h2><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/Super VLAN.png" alt="Super VLAN"  />
+
+<h3 id="1、端口类型"><a href="#1、端口类型" class="headerlink" title="1、端口类型"></a>1、端口类型</h3><p>​	1）Super vlan<br>​	2）Sub vlan</p>
+<h3 id="2、基本配置：-1"><a href="#2、基本配置：-1" class="headerlink" title="2、基本配置："></a>2、基本配置：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[SWA]vlan2</span><br><span class="line">[SWA-vlan2]port GigabitEthernet1/0/1</span><br><span class="line">[SWA]vlan3</span><br><span class="line">[SWA-vlan3]port GigabitEthernet1/0/2</span><br><span class="line">[SWA]vlan10</span><br><span class="line">[SWA-vlan10]supervlan</span><br><span class="line">[SWA-vlan10]sub vlan 2 3</span><br><span class="line">[SWA]interface Vlan-interface 10</span><br><span class="line">[SWA-Vlan-interface10]ip address 10.1.1.1 255.255.255.0</span><br><span class="line">[SWA-Vlan-interface10]local-proxy-arp enable</span><br></pre></td></tr></table></figure>
+
+<h2 id="五、ARP代理"><a href="#五、ARP代理" class="headerlink" title="五、ARP代理"></a>五、ARP代理</h2><h3 id="1、分类："><a href="#1、分类：" class="headerlink" title="1、分类："></a>1、分类：</h3><h4 id="1）普通ARP代理"><a href="#1）普通ARP代理" class="headerlink" title="1）普通ARP代理"></a>1）普通ARP代理</h4><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/普通ARP.png" alt="普通" style="zoom:80%;" />
+
+<h4 id="2）本地ARP代理"><a href="#2）本地ARP代理" class="headerlink" title="2）本地ARP代理"></a>2）本地ARP代理</h4><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/本地ARP.png" alt="本地" style="zoom:80%;" />
+
+<h2 id="六、华为VLAN聚合"><a href="#六、华为VLAN聚合" class="headerlink" title="六、华为VLAN聚合"></a>六、华为VLAN聚合</h2><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/聚合.png" alt="聚合" style="zoom:80%;" />
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[SW1] vlan batch 10 20#创建Sub-VLAN</span><br><span class="line">[SW1] interface GigabitEthernet0/0/1</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port link-type trunk</span><br><span class="line">[SW1-GigabitEthernet0/0/1] port trunk allow-pass vlan 10</span><br><span class="line">[SW1] interface GigabitEthernet0/0/2</span><br><span class="line">[SW1-GigabitEthernet0/0/2] port link-type trunk</span><br><span class="line">[SW1-GigabitEthernet0/0/2] port trunk allow-pass vlan 20</span><br><span class="line">[SW1] vlan 100#创建Super-VLAN</span><br><span class="line">[SW1-vlan100] aggregate-vlan</span><br><span class="line">[SW1-vlan100] access-vlan 10 20 #将VLAN10,20作为VLAN100的Sub-VLAN</span><br><span class="line">[SW1] interface vlanif 100</span><br><span class="line">[SW1-vlanif100] ip address 192.168.1.254 24</span><br><span class="line">[SW1-vlanif100] arp-proxy inter-sub-vlan-proxy enable</span><br><span class="line">#使能Sub-VLAN间的Proxy ARP功能</span><br></pre></td></tr></table></figure>
+
+
       
 
       
