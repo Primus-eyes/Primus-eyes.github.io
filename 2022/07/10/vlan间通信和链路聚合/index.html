@@ -6,15 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives: 2022 | Hexo</title>
+  <title>vlan间通信和链路聚合 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2022/index.html">
+  <meta name="description" content="vlan间通信和链路聚合一、vlan间通信1、通过路由器实施（单臂路由）1）原理  ​		①路由器物理接口分成多个虚拟子接口。 ​		②每个路由器的虚拟子接口充当一个vlan网关。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vlan间通信和链路聚合">
+<meta property="og:url" content="http://example.com/2022/07/10/vlan%E9%97%B4%E9%80%9A%E4%BF%A1%E5%92%8C%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="vlan间通信和链路聚合一、vlan间通信1、通过路由器实施（单臂路由）1）原理  ​		①路由器物理接口分成多个虚拟子接口。 ​		②每个路由器的虚拟子接口充当一个vlan网关。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/单臂路由.png">
+<meta property="og:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/SVI.png">
+<meta property="article:published_time" content="2022-07-10T05:04:57.000Z">
+<meta property="article:modified_time" content="2022-07-10T07:06:50.433Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="数据通信">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/单臂路由.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -150,36 +158,120 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-vlan间通信和链路聚合" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      vlan间通信和链路聚合
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/10/vlan%E9%97%B4%E9%80%9A%E4%BF%A1%E5%92%8C%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/" class="archive-article-date">
+
+        
+        <a href="/2022/07/10/vlan%E9%97%B4%E9%80%9A%E4%BF%A1%E5%92%8C%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/" class="archive-article-date">
   	<time datetime="2022-07-10T05:04:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-10</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/10/vlan%E9%97%B4%E9%80%9A%E4%BF%A1%E5%92%8C%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/">vlan间通信和链路聚合</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="vlan间通信和链路聚合"><a href="#vlan间通信和链路聚合" class="headerlink" title="vlan间通信和链路聚合"></a>vlan间通信和链路聚合</h1><h2 id="一、vlan间通信"><a href="#一、vlan间通信" class="headerlink" title="一、vlan间通信"></a>一、vlan间通信</h2><h3 id="1、通过路由器实施（单臂路由）"><a href="#1、通过路由器实施（单臂路由）" class="headerlink" title="1、通过路由器实施（单臂路由）"></a>1、通过路由器实施（单臂路由）</h3><h4 id="1）原理"><a href="#1）原理" class="headerlink" title="1）原理"></a>1）原理</h4><img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/单臂路由.png" alt="单臂路由" style="zoom: 80%;" />
 
-        <div class="article-info info-on-right">
-          
+<p>​		①路由器物理接口分成多个虚拟子接口。</p>
+<p>​		②每个路由器的虚拟子接口充当一个vlan网关。</p>
+<span id="more"></span>
+
+<h4 id="2）优缺点"><a href="#2）优缺点" class="headerlink" title="2）优缺点"></a>2）优缺点</h4><table>
+<thead>
+<tr>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>交换机不需要三层服务，因此它可以与如何交换机配合使用</td>
+<td>路由器是单点故障</td>
+</tr>
+<tr>
+<td>实施过程简单</td>
+<td>单一流量路劲可能发生拥塞</td>
+</tr>
+<tr>
+<td>路由器可实现vlan间通信</td>
+<td>当帧多次离开和重新输入交换机机箱时，及路由器做出基于软件的决策时，可能会出现延迟。</td>
+</tr>
+</tbody></table>
+<h3 id="2、通过交换机实施"><a href="#2、通过交换机实施" class="headerlink" title="2、通过交换机实施"></a>2、通过交换机实施</h3><h4 id="1）路由交换端口："><a href="#1）路由交换端口：" class="headerlink" title="1）路由交换端口："></a>1）路由交换端口：</h4><h5 id="Ⅰ、条件"><a href="#Ⅰ、条件" class="headerlink" title="Ⅰ、条件"></a>Ⅰ、条件</h5><p>​			①具有三层功能的交换机</p>
+<p>​			②不与任何的vlan有关联</p>
+<p>​			③关闭二层端口功能</p>
+<p>​			④vlan和子网只有一个交换机端口</p>
+<h5 id="Ⅱ、基本配置"><a href="#Ⅱ、基本配置" class="headerlink" title="Ⅱ、基本配置"></a>Ⅱ、基本配置</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SW(config-if)#int e0/1</span><br><span class="line">SW(config-if)#no switchport ---关闭接口的交换功能</span><br><span class="line">SW(config-if)#ip address 192.168.10.254 255.255.255.0</span><br></pre></td></tr></table></figure>
+
+<h4 id="2）交换虚拟接口：SVI"><a href="#2）交换虚拟接口：SVI" class="headerlink" title="2）交换虚拟接口：SVI"></a>2）交换虚拟接口：SVI</h4><p>​	<img src="https://yuntuku-1312821087.cos.ap-nanjing.myqcloud.com/img/SVI.png" alt="SVI"></p>
+<h5 id="①接口双up的条件"><a href="#①接口双up的条件" class="headerlink" title="①接口双up的条件"></a>①接口双up的条件</h5><p>​			Ⅰ、交换机要用对应的vlan</p>
+<p>​			Ⅱ、接口要no shotdown</p>
+<p>​			Ⅲ、至少要有一个接口属于该vlan（access接口属于该vlan、trunk接口允许该vlan通过）</p>
+<h5 id="②基本配置"><a href="#②基本配置" class="headerlink" title="②基本配置"></a>②基本配置</h5><h6 id="Ⅰ、思科"><a href="#Ⅰ、思科" class="headerlink" title="Ⅰ、思科"></a>Ⅰ、思科</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Switch(config)#int vlan 10</span><br><span class="line">Switch(config-if)#no shutdown  </span><br><span class="line">Switch(config-if)#ip address 192.168.10.254 255.255.255.0</span><br></pre></td></tr></table></figure>
+
+<h6 id="Ⅱ、华为-x2F-华三"><a href="#Ⅱ、华为-x2F-华三" class="headerlink" title="Ⅱ、华为&#x2F;华三"></a>Ⅱ、华为&#x2F;华三</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[H3C]vlan 2 to 3</span><br><span class="line">[H3C]interface Vlan-interface 2</span><br><span class="line">[H3C-Vlan-interface2]ip address 10.1.2.1 24</span><br><span class="line">[H3C-Vlan-interface2]undo shutdown</span><br><span class="line">[H3C]interface Vlan-interface 3</span><br><span class="line">[H3C-Vlan-interface3]ip address 10.1.3.1 24</span><br><span class="line">[H3C-Vlan-interface3]undo shutdown</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、DHCP中继"><a href="#二、DHCP中继" class="headerlink" title="二、DHCP中继"></a>二、DHCP中继</h2><p>前提：DHCP服务器需要有去往中继地址的路由</p>
+<h3 id="1、什么是DHCP中继"><a href="#1、什么是DHCP中继" class="headerlink" title="1、什么是DHCP中继"></a>1、什么是DHCP中继</h3><p>DHCP中继（也叫做DHCP中继代理）是一个小程序，可以实现在不同子网和物理网段之间处理和转发dhcp信息的功能。</p>
+<h3 id="2、基本配置"><a href="#2、基本配置" class="headerlink" title="2、基本配置"></a>2、基本配置</h3><h4 id="1）思科"><a href="#1）思科" class="headerlink" title="1）思科"></a>1）思科</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">R2(config)#int e0/1</span><br><span class="line">R2(config-if)#ip helper-address 192.168.12.1</span><br></pre></td></tr></table></figure>
+
+<h4 id="2）华为"><a href="#2）华为" class="headerlink" title="2）华为"></a>2）华为</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[R2]DHCP server group HW</span><br><span class="line">[R2-DHCP-server-group-HW]DHCP-server 10.1.1.2</span><br><span class="line">[R2]interface GigabitEthernet0/0/1</span><br><span class="line">[R2-GigabitEthernet0/0/1]ip address 10.1.1.1 24</span><br><span class="line">[R2]interface GigabitEthernet0/0/0</span><br><span class="line">[R2-GigabitEthernet0/0/0]ip address 192.168.1.1 24</span><br><span class="line">[R2-GigabitEthernet0/0/0]DHCP select relay</span><br><span class="line">[R2-GigabitEthernet0/0/0]DHCP relay server-select HW</span><br></pre></td></tr></table></figure>
+
+<h4 id="3）华三"><a href="#3）华三" class="headerlink" title="3）华三"></a>3）华三</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[Router] dhcp enable</span><br><span class="line">[Router] interface ethernet 1/1</span><br><span class="line">[Router-Ethernet1/1] dhcp select relay</span><br><span class="line">[Router-Ethernet1/1] dhcp relay server-address 192.168.1.10</span><br></pre></td></tr></table></figure>
+
+<h2 id="三、链路聚合："><a href="#三、链路聚合：" class="headerlink" title="三、链路聚合："></a>三、链路聚合：</h2><h3 id="1、原理："><a href="#1、原理：" class="headerlink" title="1、原理："></a>1、原理：</h3><p>​	将多个物理链路捆绑在一起，形成一个逻辑的链路，捆绑之后的链路带宽是多个物理链路带宽之和，这样不仅可以达到提高链路带宽的效果，还可以实现冗余</p>
+<h3 id="2、前提："><a href="#2、前提：" class="headerlink" title="2、前提："></a>2、前提：</h3><p>​	双工模式、接口速率、端口模式（access、trunk）、本征vlan等要一致</p>
+<h3 id="3、模式："><a href="#3、模式：" class="headerlink" title="3、模式："></a>3、模式：</h3><h4 id="1）LACP："><a href="#1）LACP：" class="headerlink" title="1）LACP："></a>1）LACP：</h4><h5 id="①公有协议"><a href="#①公有协议" class="headerlink" title="①公有协议"></a>①公有协议</h5><p>​				基于802.3ad协议，最多支持16条链路进行捆绑，其中有8条传输数据，剩下8条作为备份</p>
+<h5 id="②模式："><a href="#②模式：" class="headerlink" title="②模式："></a>②模式：</h5><h6 id="I、主动模式："><a href="#I、主动模式：" class="headerlink" title="I、主动模式："></a>I、主动模式：</h6><p>​				active，主动与对方进行协商</p>
+<h6 id="II、被动模式："><a href="#II、被动模式：" class="headerlink" title="II、被动模式："></a>II、被动模式：</h6><p>​				passive，被动等待对方进行协商</p>
+<h4 id="2）PAGP："><a href="#2）PAGP：" class="headerlink" title="2）PAGP："></a>2）PAGP：</h4><h5 id="①思科私有协议"><a href="#①思科私有协议" class="headerlink" title="①思科私有协议"></a>①思科私有协议</h5><h5 id="②模式：-1"><a href="#②模式：-1" class="headerlink" title="②模式："></a>②模式：</h5><h6 id="I、主动模式：-1"><a href="#I、主动模式：-1" class="headerlink" title="I、主动模式："></a>I、主动模式：</h6><p>​				desirable，主动与对方进行协商</p>
+<h6 id="II、被动模式：-1"><a href="#II、被动模式：-1" class="headerlink" title="II、被动模式："></a>II、被动模式：</h6><p>​				auto，被动等待对方进行协商</p>
+<h4 id="3）ON："><a href="#3）ON：" class="headerlink" title="3）ON："></a>3）ON：</h4><p>​		强制捆绑</p>
+<h3 id="4、基本配置："><a href="#4、基本配置：" class="headerlink" title="4、基本配置："></a>4、基本配置：</h3><h4 id="1）思科："><a href="#1）思科：" class="headerlink" title="1）思科："></a>1）思科：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SW1(config)#int range e0/0-1</span><br><span class="line">SW1(config-if-range)#channel-group 1 mode active</span><br><span class="line">SW2(config-if-range)#channel-group 2 mode passive</span><br><span class="line"></span><br><span class="line">SW1#show etherchannel summary </span><br></pre></td></tr></table></figure>
+
+<h4 id="2）华三："><a href="#2）华三：" class="headerlink" title="2）华三："></a>2）华三：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[sw1]interface Bridge-Aggregation 1</span><br><span class="line">[sw1-Bridge-Aggregation1]link-aggregation mode dynamic </span><br><span class="line">[sw1-Bridge-Aggregation1]qu</span><br><span class="line">[sw1]int range GigabitEthernet 1/0/1 to GigabitEthernet 1/0/3</span><br><span class="line">[sw1-if-range]port link-aggregation group 1</span><br></pre></td></tr></table></figure>
+
+<h4 id="3）华为："><a href="#3）华为：" class="headerlink" title="3）华为："></a>3）华为：</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[SW1]interface Eth-Trunk 1</span><br><span class="line">[SW1-Eth-Trunk1]</span><br><span class="line">[SW1]interface g0/0/1</span><br><span class="line">[SW1-GigabitEthernet0/0/1]eth-trunk 1</span><br><span class="line">[SW1]interface g0/0/2</span><br><span class="line">[SW1-GigabitEthernet0/0/2]eth-trunk 1</span><br><span class="line">[SW1]interface g0/0/3</span><br><span class="line">[SW1-GigabitEthernet0/0/3]eth-trunk 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、负载均衡方式："><a href="#5、负载均衡方式：" class="headerlink" title="5、负载均衡方式："></a>5、负载均衡方式：</h3><h4 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">SW1(config)#port-channel load-balance ?</span><br><span class="line">  dst-ip       Dst IP Addr</span><br><span class="line">  dst-mac      Dst Mac Addr</span><br><span class="line">  src-dst-ip   Src XOR Dst IP Addr</span><br><span class="line">  src-dst-mac  Src XOR Dst Mac Addr</span><br><span class="line">  src-ip       Src IP Addr</span><br><span class="line">  src-mac      Src Mac Addr</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">SW1#show etherchannel load-balance </span><br></pre></td></tr></table></figure>
+
+
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -191,198 +283,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2022/07/10/vlan%E9%97%B4%E9%80%9A%E4%BF%A1%E5%92%8C%E9%93%BE%E8%B7%AF%E8%81%9A%E5%90%88/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/08/%E9%AB%98%E7%BA%A7vlan/" class="archive-article-date">
-  	<time datetime="2022-07-08T01:12:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-08</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2022/07/08/%E9%AB%98%E7%BA%A7vlan/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">高级vlan</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/08/%E9%AB%98%E7%BA%A7vlan/">高级vlan</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/07/vlan%E5%8E%9F%E7%90%86%E5%92%8C%E9%85%8D%E7%BD%AE/" class="archive-article-date">
-  	<time datetime="2022-07-07T06:24:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/07/vlan%E5%8E%9F%E7%90%86%E5%92%8C%E9%85%8D%E7%BD%AE/">vlan原理和配置</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/07/06/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84%E5%92%8C%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF/" class="archive-article-date">
-  	<time datetime="2022-07-06T12:13:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-07-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/07/06/%E5%9B%AD%E5%8C%BA%E7%BD%91%E6%9E%B6%E6%9E%84%E5%92%8C%E5%BA%94%E7%94%A8%E6%8A%80%E6%9C%AF/">园区网架构和应用技术</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/05/09/ospf/" class="archive-article-date">
-  	<time datetime="2022-05-09T11:29:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/05/09/ospf/">ospf</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据通信</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2022/05/09/hello-world/" class="archive-article-date">
-  	<time datetime="2022-05-09T11:26:03.632Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/05/09/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -405,8 +405,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
